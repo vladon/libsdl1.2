@@ -51,11 +51,11 @@
 
 /* This is the system-independent thread info structure */
 struct SDL_Thread {
-	Uint32 threadid;
-	SYS_ThreadHandle handle;
-	int status;
-	SDL_error errbuf;
-	void *data;
+    Uint32 threadid;
+    SYS_ThreadHandle handle;
+    int status;
+    SDL_error errbuf;
+    void *data;
 };
 
 /* This is the function called to run a thread */

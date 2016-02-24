@@ -27,27 +27,27 @@
 
 /* The SDL joystick structure */
 struct _SDL_Joystick {
-	Uint8 index;		/* Device index */
-	const char *name;	/* Joystick name - system dependent */
+    Uint8 index;		/* Device index */
+    const char *name;	/* Joystick name - system dependent */
 
-	int naxes;		/* Number of axis controls on the joystick */
-	Sint16 *axes;		/* Current axis states */
+    int naxes;		/* Number of axis controls on the joystick */
+    Sint16 *axes;		/* Current axis states */
 
-	int nhats;		/* Number of hats on the joystick */
-	Uint8 *hats;		/* Current hat states */
-	
-	int nballs;		/* Number of trackballs on the joystick */
-	struct balldelta {
-		int dx;
-		int dy;
-	} *balls;		/* Current ball motion deltas */
-	
-	int nbuttons;		/* Number of buttons on the joystick */
-	Uint8 *buttons;		/* Current button states */
-	
-	struct joystick_hwdata *hwdata;	/* Driver dependent information */
+    int nhats;		/* Number of hats on the joystick */
+    Uint8 *hats;		/* Current hat states */
+    
+    int nballs;		/* Number of trackballs on the joystick */
+    struct balldelta {
+        int dx;
+        int dy;
+    } *balls;		/* Current ball motion deltas */
+    
+    int nbuttons;		/* Number of buttons on the joystick */
+    Uint8 *buttons;		/* Current button states */
+    
+    struct joystick_hwdata *hwdata;	/* Driver dependent information */
 
-	int ref_count;		/* Reference count for multiple opens */
+    int ref_count;		/* Reference count for multiple opens */
 };
 
 /* Function to scan the system for joysticks.

@@ -259,12 +259,12 @@ void *SDL_memset(void *dst, int c, size_t len)
     if ( left > 0 ) {
         Uint8 value = (Uint8)c;
         Uint8 *dstp = (Uint8 *)dst;
-	switch(left) {
-	case 3:
+    switch(left) {
+    case 3:
             *dstp++ = value;
-	case 2:
+    case 2:
             *dstp++ = value;
-	case 1:
+    case 1:
             *dstp++ = value;
         }
     }
@@ -384,7 +384,7 @@ char *SDL_strupr(char *string)
     char *bufp = string;
     while ( *bufp ) {
         *bufp = SDL_toupper((unsigned char) *bufp);
-	++bufp;
+    ++bufp;
     }
     return string;
 }
@@ -396,7 +396,7 @@ char *SDL_strlwr(char *string)
     char *bufp = string;
     while ( *bufp ) {
         *bufp = SDL_tolower((unsigned char) *bufp);
-	++bufp;
+    ++bufp;
     }
     return string;
 }
@@ -409,7 +409,7 @@ char *SDL_strchr(const char *string, int c)
         if ( *string == c ) {
             return (char *)string;
         }
-	++string;
+    ++string;
     }
     return NULL;
 }
@@ -423,7 +423,7 @@ char *SDL_strrchr(const char *string, int c)
         if ( *bufp == c ) {
             return (char *)bufp;
         }
-	--bufp;
+    --bufp;
     }
     return NULL;
 }
@@ -437,7 +437,7 @@ char *SDL_strstr(const char *haystack, const char *needle)
         if ( SDL_strncmp(haystack, needle, length) == 0 ) {
             return (char *)haystack;
         }
-	++haystack;
+    ++haystack;
     }
     return NULL;
 }

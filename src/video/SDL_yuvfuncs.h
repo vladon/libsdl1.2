@@ -30,8 +30,8 @@
 #define _THIS	SDL_VideoDevice *_this
 #endif
 struct private_yuvhwfuncs {
-	int (*Lock)(_THIS, SDL_Overlay *overlay);
-	void (*Unlock)(_THIS, SDL_Overlay *overlay);
-	int (*Display)(_THIS, SDL_Overlay *overlay, SDL_Rect *src, SDL_Rect *dst);
-	void (*FreeHW)(_THIS, SDL_Overlay *overlay);
+    int (*Lock)(_THIS, SDL_Overlay *overlay);
+    void (*Unlock)(_THIS, SDL_Overlay *overlay);
+    int (*Display)(_THIS, SDL_Overlay *overlay, SDL_Rect *src, SDL_Rect *dst);
+    void (*FreeHW)(_THIS, SDL_Overlay *overlay);
 };

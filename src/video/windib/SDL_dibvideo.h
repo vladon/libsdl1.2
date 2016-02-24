@@ -30,7 +30,7 @@
 
 /* Private display data */
 struct DibInfo {
-	HBITMAP screen_bmp;
+    HBITMAP screen_bmp;
     HPALETTE screen_pal;
     LOGPALETTE *screen_logpal;
     BOOL grab_palette;
@@ -40,8 +40,8 @@ struct DibInfo {
     SDL_Rect **SDL_modelist[NUM_MODELISTS];
         
 #ifdef _WIN32_WCE
-	int supportRotation; /* for Pocket PC devices */
-	DWORD origRotation; /* for Pocket PC devices */
+    int supportRotation; /* for Pocket PC devices */
+    DWORD origRotation; /* for Pocket PC devices */
 #endif
 
     /* Screensaver settings */

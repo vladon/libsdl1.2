@@ -29,5 +29,5 @@
 
 /* The implementation dependent data for the window manager cursor */
 struct WMcursor {
-	int unused;
+    int unused;
 };

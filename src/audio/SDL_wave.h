@@ -42,21 +42,21 @@
 /* Normally, these three chunks come consecutively in a WAVE file */
 typedef struct WaveFMT {
 /* Not saved in the chunk we read:
-	Uint32	FMTchunk;
-	Uint32	fmtlen;
+    Uint32	FMTchunk;
+    Uint32	fmtlen;
 */
-	Uint16	encoding;	
-	Uint16	channels;		/* 1 = mono, 2 = stereo */
-	Uint32	frequency;		/* One of 11025, 22050, or 44100 Hz */
-	Uint32	byterate;		/* Average bytes per second */
-	Uint16	blockalign;		/* Bytes per sample block */
-	Uint16	bitspersample;		/* One of 8, 12, 16, or 4 for ADPCM */
+    Uint16	encoding;	
+    Uint16	channels;		/* 1 = mono, 2 = stereo */
+    Uint32	frequency;		/* One of 11025, 22050, or 44100 Hz */
+    Uint32	byterate;		/* Average bytes per second */
+    Uint16	blockalign;		/* Bytes per sample block */
+    Uint16	bitspersample;		/* One of 8, 12, 16, or 4 for ADPCM */
 } WaveFMT;
 
 /* The general chunk found in the WAVE file */
 typedef struct Chunk {
-	Uint32 magic;
-	Uint32 length;
-	Uint8 *data;
+    Uint32 magic;
+    Uint32 length;
+    Uint8 *data;
 } Chunk;
 

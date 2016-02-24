@@ -33,12 +33,12 @@
 
 void DUMMY_PumpEvents(_THIS)
 {
-	/* do nothing. */
+    /* do nothing. */
 }
 
 void DUMMY_InitOSKeymap(_THIS)
 {
-	/* do nothing. */
+    /* do nothing. */
 }
 
 /* end of SDL_nullevents.c ... */

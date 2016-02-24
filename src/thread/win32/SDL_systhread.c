@@ -102,54 +102,54 @@ int SDL_SYS_CreateThread(SDL_Thread *thread, void *args, pfnSDL_CurrentBeginThre
 int SDL_SYS_CreateThread(SDL_Thread *thread, void *args)
 {
 #ifdef _WIN32_WCE
-	pfnSDL_CurrentBeginThread pfnBeginThread = NULL;
-	pfnSDL_CurrentEndThread pfnEndThread = NULL;
+    pfnSDL_CurrentBeginThread pfnBeginThread = NULL;
+    pfnSDL_CurrentEndThread pfnEndThread = NULL;
 #else
-	pfnSDL_CurrentBeginThread pfnBeginThread = _beginthreadex;
-	pfnSDL_CurrentEndThread pfnEndThread = _endthreadex;
+    pfnSDL_CurrentBeginThread pfnBeginThread = _beginthreadex;
+    pfnSDL_CurrentEndThread pfnEndThread = _endthreadex;
 #endif
 #endif /* SDL_PASSED_BEGINTHREAD_ENDTHREAD */
-	pThreadStartParms pThreadParms = (pThreadStartParms)SDL_malloc(sizeof(tThreadStartParms));
-	if (!pThreadParms) {
-		SDL_OutOfMemory();
-		return(-1);
-	}
+    pThreadStartParms pThreadParms = (pThreadStartParms)SDL_malloc(sizeof(tThreadStartParms));
+    if (!pThreadParms) {
+        SDL_OutOfMemory();
+        return(-1);
+    }
 
-	// Save the function which we will have to call to clear the RTL of calling app!
-	pThreadParms->pfnCurrentEndThread = pfnEndThread;
-	// Also save the real parameters we have to pass to thread function
-	pThreadParms->args = args;
+    // Save the function which we will have to call to clear the RTL of calling app!
+    pThreadParms->pfnCurrentEndThread = pfnEndThread;
+    // Also save the real parameters we have to pass to thread function
+    pThreadParms->args = args;
 
-	if (pfnBeginThread) {
-		unsigned threadid = 0;
-		thread->handle = (SYS_ThreadHandle)
-				((size_t) pfnBeginThread(NULL, 0, RunThreadViaBeginThreadEx,
-										 pThreadParms, 0, &threadid));
-	} else {
-		DWORD threadid = 0;
-		thread->handle = CreateThread(NULL, 0, RunThreadViaCreateThread, pThreadParms, 0, &threadid);
-	}
-	if (thread->handle == NULL) {
-		SDL_SetError("Not enough resources to create thread");
-		return(-1);
-	}
-	return(0);
+    if (pfnBeginThread) {
+        unsigned threadid = 0;
+        thread->handle = (SYS_ThreadHandle)
+                ((size_t) pfnBeginThread(NULL, 0, RunThreadViaBeginThreadEx,
+                                         pThreadParms, 0, &threadid));
+    } else {
+        DWORD threadid = 0;
+        thread->handle = CreateThread(NULL, 0, RunThreadViaCreateThread, pThreadParms, 0, &threadid);
+    }
+    if (thread->handle == NULL) {
+        SDL_SetError("Not enough resources to create thread");
+        return(-1);
+    }
+    return(0);
 }
 
 void SDL_SYS_SetupThread(void)
 {
-	return;
+    return;
 }
 
 Uint32 SDL_ThreadID(void)
 {
-	return((Uint32)GetCurrentThreadId());
+    return((Uint32)GetCurrentThreadId());
 }
 
 void SDL_SYS_WaitThread(SDL_Thread *thread)
 {
-	WaitForSingleObject(thread->handle, INFINITE);
-	CloseHandle(thread->handle);
+    WaitForSingleObject(thread->handle, INFINITE);
+    CloseHandle(thread->handle);
 }
 
 /* WARNING: This function is really a last resort.
@@ -158,5 +158,5 @@ void SDL_SYS_WaitThread(SDL_Thread *thread)
  */
 void SDL_SYS_KillThread(SDL_Thread *thread)
 {
-	TerminateThread(thread->handle, FALSE);
+    TerminateThread(thread->handle, FALSE);
 }

@@ -33,13 +33,13 @@
 
 /* The DirectSound objects */
 struct SDL_PrivateAudioData {
-	LPDIRECTSOUND sound;
-	LPDIRECTSOUNDBUFFER mixbuf;
-	int NUM_BUFFERS;
-	int mixlen, silence;
-	DWORD lastchunk;
-	Uint8 *locked_buf;
-	HANDLE audio_event;
+    LPDIRECTSOUND sound;
+    LPDIRECTSOUNDBUFFER mixbuf;
+    int NUM_BUFFERS;
+    int mixlen, silence;
+    DWORD lastchunk;
+    Uint8 *locked_buf;
+    HANDLE audio_event;
 };
 
 /* Old variable names */
