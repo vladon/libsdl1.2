@@ -91,8 +91,8 @@
 /** @name Basic data types */
 /*@{*/
 typedef enum {
-	SDL_FALSE = 0,
-	SDL_TRUE  = 1
+    SDL_FALSE = 0,
+    SDL_TRUE  = 1
 } SDL_bool;
 
 typedef int8_t		Sint8;
@@ -110,8 +110,8 @@ typedef uint64_t	Uint64;
 #else
 /* This is really just a hack to prevent the compiler from complaining */
 typedef struct {
-	Uint32 hi;
-	Uint32 lo;
+    Uint32 hi;
+    Uint32 lo;
 } Uint64, Sint64;
 #endif
 
@@ -144,7 +144,7 @@ SDL_COMPILE_TIME_ASSERT(sint64, sizeof(Sint64) == 8);
 #endif
 
 typedef enum {
-	DUMMY_ENUM_VALUE
+    DUMMY_ENUM_VALUE
 } SDL_DUMMY_ENUM;
 
 #ifndef __NDS__
@@ -261,30 +261,30 @@ extern DECLSPEC void * SDLCALL SDL_memset(void *dst, int c, size_t len);
 #if defined(__GNUC__) && defined(i386)
 #define SDL_memset4(dst, val, len)				\
 do {								\
-	int u0, u1, u2;						\
-	__asm__ __volatile__ (					\
-		"cld\n\t"					\
-		"rep ; stosl\n\t"				\
-		: "=&D" (u0), "=&a" (u1), "=&c" (u2)		\
-		: "0" (dst), "1" (val), "2" (SDL_static_cast(Uint32, len))	\
-		: "memory" );					\
+    int u0, u1, u2;						\
+    __asm__ __volatile__ (					\
+        "cld\n\t"					\
+        "rep ; stosl\n\t"				\
+        : "=&D" (u0), "=&a" (u1), "=&c" (u2)		\
+        : "0" (dst), "1" (val), "2" (SDL_static_cast(Uint32, len))	\
+        : "memory" );					\
 } while(0)
 #endif
 #ifndef SDL_memset4
 #define SDL_memset4(dst, val, len)		\
 do {						\
-	unsigned _count = (len);		\
-	unsigned _n = (_count + 3) / 4;		\
-	Uint32 *_p = SDL_static_cast(Uint32 *, dst);	\
-	Uint32 _val = (val);			\
-	if (len == 0) break;			\
+    unsigned _count = (len);		\
+    unsigned _n = (_count + 3) / 4;		\
+    Uint32 *_p = SDL_static_cast(Uint32 *, dst);	\
+    Uint32 _val = (val);			\
+    if (len == 0) break;			\
         switch (_count % 4) {			\
         case 0: do {    *_p++ = _val;		\
         case 3:         *_p++ = _val;		\
         case 2:         *_p++ = _val;		\
         case 1:         *_p++ = _val;		\
-		} while ( --_n );		\
-	}					\
+        } while ( --_n );		\
+    }					\
 } while(0)
 #endif
 
@@ -294,20 +294,20 @@ do {						\
 #elif defined(__GNUC__) && defined(i386)
 #define SDL_memcpy(dst, src, len)					  \
 do {									  \
-	int u0, u1, u2;						  	  \
-	__asm__ __volatile__ (						  \
-		"cld\n\t"						  \
-		"rep ; movsl\n\t"					  \
-		"testb $2,%b4\n\t"					  \
-		"je 1f\n\t"						  \
-		"movsw\n"						  \
-		"1:\ttestb $1,%b4\n\t"					  \
-		"je 2f\n\t"						  \
-		"movsb\n"						  \
-		"2:"							  \
-		: "=&c" (u0), "=&D" (u1), "=&S" (u2)			  \
-		: "0" (SDL_static_cast(unsigned, len)/4), "q" (len), "1" (dst),"2" (src) \
-		: "memory" );						  \
+    int u0, u1, u2;						  	  \
+    __asm__ __volatile__ (						  \
+        "cld\n\t"						  \
+        "rep ; movsl\n\t"					  \
+        "testb $2,%b4\n\t"					  \
+        "je 1f\n\t"						  \
+        "movsw\n"						  \
+        "1:\ttestb $1,%b4\n\t"					  \
+        "je 2f\n\t"						  \
+        "movsb\n"						  \
+        "2:"							  \
+        : "=&c" (u0), "=&D" (u1), "=&S" (u2)			  \
+        : "0" (SDL_static_cast(unsigned, len)/4), "q" (len), "1" (dst),"2" (src) \
+        : "memory" );						  \
 } while(0)
 #endif
 #ifndef SDL_memcpy
@@ -326,13 +326,13 @@ extern DECLSPEC void * SDLCALL SDL_memcpy(void *dst, const void *src, size_t len
 #elif defined(__GNUC__) && defined(i386)
 #define SDL_memcpy4(dst, src, len)				\
 do {								\
-	int ecx, edi, esi;					\
-	__asm__ __volatile__ (					\
-		"cld\n\t"					\
-		"rep ; movsl"					\
-		: "=&c" (ecx), "=&D" (edi), "=&S" (esi)		\
-		: "0" (SDL_static_cast(unsigned, len)), "1" (dst), "2" (src)	\
-		: "memory" );					\
+    int ecx, edi, esi;					\
+    __asm__ __volatile__ (					\
+        "cld\n\t"					\
+        "rep ; movsl"					\
+        : "=&c" (ecx), "=&D" (edi), "=&S" (esi)		\
+        : "0" (SDL_static_cast(unsigned, len)), "1" (dst), "2" (src)	\
+        : "memory" );					\
 } while(0)
 #endif
 #ifndef SDL_memcpy4
@@ -342,28 +342,28 @@ do {								\
 #if defined(__GNUC__) && defined(i386)
 #define SDL_revcpy(dst, src, len)			\
 do {							\
-	int u0, u1, u2;					\
-	char *dstp = SDL_static_cast(char *, dst);	\
-	char *srcp = SDL_static_cast(char *, src);	\
-	int n = (len);					\
-	if ( n >= 4 ) {					\
-	__asm__ __volatile__ (				\
-		"std\n\t"				\
-		"rep ; movsl\n\t"			\
-		"cld\n\t"				\
-		: "=&c" (u0), "=&D" (u1), "=&S" (u2)	\
-		: "0" (n >> 2),				\
-		  "1" (dstp+(n-4)), "2" (srcp+(n-4))	\
-		: "memory" );				\
-	}						\
-	switch (n & 3) {				\
-		case 3: dstp[2] = srcp[2];		\
-		case 2: dstp[1] = srcp[1];		\
-		case 1: dstp[0] = srcp[0];		\
-			break;				\
-		default:				\
-			break;				\
-	}						\
+    int u0, u1, u2;					\
+    char *dstp = SDL_static_cast(char *, dst);	\
+    char *srcp = SDL_static_cast(char *, src);	\
+    int n = (len);					\
+    if ( n >= 4 ) {					\
+    __asm__ __volatile__ (				\
+        "std\n\t"				\
+        "rep ; movsl\n\t"			\
+        "cld\n\t"				\
+        : "=&c" (u0), "=&D" (u1), "=&S" (u2)	\
+        : "0" (n >> 2),				\
+          "1" (dstp+(n-4)), "2" (srcp+(n-4))	\
+        : "memory" );				\
+    }						\
+    switch (n & 3) {				\
+        case 3: dstp[2] = srcp[2];		\
+        case 2: dstp[1] = srcp[1];		\
+        case 1: dstp[0] = srcp[0];		\
+            break;				\
+        default:				\
+            break;				\
+    }						\
 } while(0)
 #endif
 #ifndef SDL_revcpy
@@ -377,11 +377,11 @@ extern DECLSPEC void * SDLCALL SDL_revcpy(void *dst, const void *src, size_t len
 #else
 #define SDL_memmove(dst, src, len)			\
 do {							\
-	if ( dst < src ) {				\
-		SDL_memcpy(dst, src, len);		\
-	} else {					\
-		SDL_revcpy(dst, src, len);		\
-	}						\
+    if ( dst < src ) {				\
+        SDL_memcpy(dst, src, len);		\
+    } else {					\
+        SDL_revcpy(dst, src, len);		\
+    }						\
 } while(0)
 #endif
 
