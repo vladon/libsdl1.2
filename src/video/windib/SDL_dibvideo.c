@@ -129,14 +129,10 @@ static void DIB_DeleteDevice(SDL_VideoDevice *device)
 {
     if ( device ) {
         if ( device->hidden ) {
-            if ( device->hidden->dibInfo ) {
-                SDL_free( device->hidden->dibInfo );
-            }
+            SDL_free(device->hidden->dibInfo);
             SDL_free(device->hidden);
         }
-        if ( device->gl_data ) {
-            SDL_free(device->gl_data);
-        }
+        SDL_free(device->gl_data);
         SDL_free(device);
     }
 }
