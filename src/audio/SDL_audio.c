@@ -631,9 +631,9 @@ void SDL_AudioQuit(void)
         if ( audio->mixer_lock != NULL ) {
             SDL_DestroyMutex(audio->mixer_lock);
         }
-        if ( audio->fake_stream != NULL ) {
-            SDL_FreeAudioMem(audio->fake_stream);
-        }
+
+        SDL_FreeAudioMem(audio->fake_stream);
+
         if ( audio->convert.needed ) {
             SDL_FreeAudioMem(audio->convert.buf);
 
